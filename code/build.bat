@@ -2,5 +2,5 @@
 
 IF NOT EXIST ..\build mkdir ..\build
 pushd ..\build
-cl -Zi ..\code\aidanstring.c 
+cl -Zi ..\code\aidan_string.c 
 popd
