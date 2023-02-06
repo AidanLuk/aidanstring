@@ -3,38 +3,38 @@
 
 typedef struct aidan_string
 {
-	int length;
-	int bytes;
-	char *string;
+	int Length;
+	int Bytes;
+	char *String;
 } aidan_string;
 
-int cstringlength(char *string)
+int CStringLength(char *String)
 {
-	int result = 0;
-	while(string[result] != '\0')
+	int Result = 0;
+	while(String[Result] != '\0')
 	{
-		result++;
+		Result++;
 	}
 
-	return(result);
+	return(Result);
 }
 
-aidan_string *init_empty_aidan_string(int bytes)
+aidan_string *InitEmptyAidanString(int Bytes)
 {
-	aidan_string *result = (aidan_string *) malloc((sizeof *result));
-	result->length = 0;
-	result->bytes = bytes;
-	result->string = (char *) malloc((sizeof *(result->string))*bytes);
+	aidan_string *Result = (aidan_string *) malloc((sizeof *Result));
+	Result->Length = 0;
+	Result->Bytes = Bytes;
+	Result->String = (char *) malloc((sizeof *(Result->String))*Bytes);
 
-	return(result); 
+	return(Result); 
 }
 
-void free_aidan_string(aidan_string *aidan_string_struct)
+void FreeAidanString(aidan_string *AidanString)
 {
-	if(aidan_string_struct != 0)
+	if(AidanString != 0)
 	{
-		free(aidan_string_struct->string);
-		free(aidan_string_struct);
+		free(AidanString->String);
+		free(AidanString);
 	}
 }
 
@@ -46,13 +46,13 @@ int main(int argc, char **argv)
 		printf("argv[%d] = %s\n", i, argv[i]);
 	}
 
-	aidan_string program_name = {0};
-	program_name.length = cstringlength(argv[0]);
-	program_name.string = argv[0];
+	aidan_string ProgramName = {0};
+	ProgramName.Length = CStringLength(argv[0]);
+	ProgramName.String = argv[0];
 
 	aidan_string* test_string = 0;
-	test_string = init_empty_aidan_string(10);
-	free_aidan_string(test_string);
+	test_string = InitEmptyAidanString(10);
+	FreeAidanString(test_string);
 
 	return(0);
 }
