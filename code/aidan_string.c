@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define AIDAN_STRING_INITIAL_BYTES 32
+
 typedef struct aidan_string
 {
 	int Length;
@@ -19,6 +21,16 @@ int CStringLength(char *String)
 	return(Result);
 }
 
+aidan_string *GrowAidanString(aidan_string *AidanString)
+{
+	while(AidanString->Length >= AidanString->Bytes)
+	{
+		AidanString->Bytes *= 2;
+
+	}
+	AidanString->String = realloc(AidanString->String, AidanString->Bytes);
+	return AidanString;
+}
 aidan_string *InitEmptyAidanString(int Bytes)
 {
 	aidan_string *Result = (aidan_string *) malloc((sizeof *Result));
