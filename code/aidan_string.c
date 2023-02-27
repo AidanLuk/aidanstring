@@ -112,6 +112,12 @@ int main(int argc, char **argv)
 	aidan_string* test_string_2 = 0;
 	test_string_2 = CStringToAidanString("Hello, this is a test to see if the function works");
 
+	aidan_string* test_string_3 = CStringToAidanString("Hello, this is a test to see if appending works");
+	AppendAidanStringToAidanString(test_string_2, test_string_3);
+
+	aidan_string *test_string_4 = CStringToAidanString("This tests if ");
+	AppendCStringToAidanString(test_string_4, "the ability to append C-strings to Aidan Strings works.\n");
+
 
 	return(0);
 }
