@@ -61,6 +61,22 @@ aidan_string *CStringToAidanString(char *CString)
 	return Result;
 }
 
+void AppendAidanStringToAidanString(aidan_string *AidanString1, aidan_string *AidanString2)
+{
+	int AidanString1Index = AidanString1->Length;
+	AidanString1->Length += AidanString2->Length;
+	if(AidanString1->Length >= AidanString1->Bytes)
+	{
+		AidanString1 = GrowAidanString(AidanString1);
+	}
+	for(int AidanString2Index = 0; AidanString2Index < AidanString2->Length; AidanString2Index++, AidanString1Index++)
+	{
+		AidanString1->String[AidanString1Index] = AidanString2->String[AidanString2Index];
+	}
+	AidanString1->String[AidanString1->Length] = '\0';
+}
+
+
 void FreeAidanString(aidan_string *AidanString)
 {
 	if(AidanString != 0)
