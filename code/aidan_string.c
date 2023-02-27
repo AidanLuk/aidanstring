@@ -84,6 +84,13 @@ void FreeAidanString(aidan_string *AidanString)
 		free(AidanString->String);
 		free(AidanString);
 	}
+}	
+
+void AppendCStringToAidanString(aidan_string *AidanString, char *CString)
+{
+	aidan_string *AidanString3 = CStringToAidanString(CString);
+	AppendAidanStringToAidanString(AidanString, AidanString3);
+	FreeAidanString(AidanString3);
 }
 
 int main(int argc, char **argv)
