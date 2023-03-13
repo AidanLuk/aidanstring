@@ -93,6 +93,30 @@ void AppendCStringToAidanString(aidan_string *AidanString, char *CString)
 	FreeAidanString(AidanString3);
 }
 
+aidan_string *ConcatenateAidanStringToAidanString(aidan_string *AidanString1, aidan_string *AidanString2)
+{
+	aidan_string *Result = InitEmptyAidanString(AIDAN_STRING_INITIAL_BYTES);
+	Result->Length = AidanString1->Length + AidanString2->Length;
+	if(Result->Length >= Result->Bytes)
+	{
+		Result = GrowAidanString(Result);
+	}
+	int ResultIndex = 0;
+	for(int AidanString1Index = 0; AidanString1Index < AidanString1->Length; AidanString1Index++)
+	{
+		Result->String[ResultIndex] = AidanString1->String[AidanString1Index];
+		ResultIndex++;
+	}
+	for(int AidanString2Index = 0; AidanString2Index < AidanString2->Length; AidanString2Index++)
+	{
+		Result->String[ResultIndex] = AidanString2->String[AidanString2Index];
+		ResultIndex++;
+
+	}
+	Result->String[Result->Length] = '\0';
+	return Result;
+}
+
 int main(int argc, char **argv)
 {
 	printf("argc = %d\n", argc);
@@ -117,6 +141,8 @@ int main(int argc, char **argv)
 
 	aidan_string *test_string_4 = CStringToAidanString("This tests if ");
 	AppendCStringToAidanString(test_string_4, "the ability to append C-strings to Aidan Strings works.\n");
+
+	aidan_string *test_string_5 = ConcatenateAidanStringToAidanString(test_string_3, test_string_4);
 
 
 	return(0);
