@@ -117,6 +117,28 @@ aidan_string *ConcatenateAidanStringToAidanString(aidan_string *AidanString1, ai
 	return Result;
 }
 
+
+int AreAidanStringsMatching(aidan_string *AidanString1, aidan_string *AidanString2)
+{
+	int Result = 1;
+	if(AidanString1->Length != AidanString2->Length)
+	{
+		Result = 0;
+		return Result;
+	}
+	for(int AidanStringIndex = 0; AidanStringIndex < AidanString1->Length; AidanStringIndex++)
+	{
+		if(AidanString1->String[AidanStringIndex] != AidanString2->String[AidanStringIndex])
+		{
+			Result = 0;
+			return Result;
+		}
+	}
+
+	return Result; // Should be 1 at this point. 
+}
+
+
 int main(int argc, char **argv)
 {
 	printf("argc = %d\n", argc);
@@ -143,6 +165,13 @@ int main(int argc, char **argv)
 	AppendCStringToAidanString(test_string_4, "the ability to append C-strings to Aidan Strings works.\n");
 
 	aidan_string *test_string_5 = ConcatenateAidanStringToAidanString(test_string_3, test_string_4);
+
+	aidan_string *matching_string_1 = CStringToAidanString("Hello, World!\n");
+	aidan_string *matching_string_2 = CStringToAidanString("Hello, World!\n");
+	aidan_string *different_string = CStringToAidanString("Hello World!\n");
+
+	int true_result = AreAidanStringsMatching(matching_string_1, matching_string_2);
+	int false_result = AreAidanStringsMatching(matching_string_1, different_string);
 
 
 	return(0);
