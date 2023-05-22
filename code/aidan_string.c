@@ -138,6 +138,18 @@ int AreAidanStringsMatching(aidan_string *AidanString1, aidan_string *AidanStrin
 	return Result; // Should be 1 at this point. 
 }
 
+int AidanStringCompare(aidan_string *AidanString1, aidan_string *AidanString2)
+{
+	int AidanStringIndex = 0;
+	while(AidanString[AidanStringIndex] != AidanString->String)
+	{	
+		if(AidanString1->String[AidanStringIndex] - AidanString2->String[AidanStringIndex] != 0)
+		{
+			break;
+		}
+	}
+}
+
 
 int main(int argc, char **argv)
 {
